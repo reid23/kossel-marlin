@@ -644,18 +644,18 @@
   #endif
 
   // Print surface diameter/2 minus unreachable space (avoid collisions with vertical towers).
-  #define DELTA_PRINTABLE_RADIUS 85    // (mm)
+  #define DELTA_PRINTABLE_RADIUS 75    // (mm)
 
   // Center-to-center distance of the holes in the diagonal push rods.
-  #define DELTA_DIAGONAL_ROD 220.315        // (mm)
+  #define DELTA_DIAGONAL_ROD 221.5        // (mm)
 
   // Distance between bed and nozzle Z home position
-  #define DELTA_HEIGHT 246.15             // (mm) Get this value from G33 auto calibrate
+  #define DELTA_HEIGHT 285             // (mm) Get this value from G33 auto calibrate
 
-  #define DELTA_ENDSTOP_ADJ { -1.78, 0.0, -1.3 } // Get these values from G33 auto calibrate
-
+  #define DELTA_ENDSTOP_ADJ { 0.0, 0.0, 0.0 } // Get these values from G33 auto calibrate
+ 
   // Horizontal distance bridged by diagonal push rods when effector is centered.
-  #define DELTA_RADIUS 115.91              // (mm) Get this value from G33 auto calibrate
+  #define DELTA_RADIUS 115              // (mm) Get this value from G33 auto calibrate
 
   // Trim adjustments for individual towers
   // tower angle corrections for X and Y tower / rotate XYZ so Z tower angle = 0
@@ -664,7 +664,7 @@
 
   // Delta radius and diagonal rod adjustments (mm)
   #define DELTA_RADIUS_TRIM_TOWER { 0.0, 0.0, 0.0 }
-  #define DELTA_DIAGONAL_ROD_TRIM_TOWER { -0.963, 0.481, 0.481}
+  #define DELTA_DIAGONAL_ROD_TRIM_TOWER { 0.0, 0.0, 0.0}
 
 #endif
 
@@ -801,7 +801,7 @@
  */
 // variables to calculate steps
 #define XYZ_FULL_STEPS_PER_ROTATION 200
-#define XYZ_MICROSTEPS 256
+#define XYZ_MICROSTEPS 16
 #define XYZ_BELT_PITCH 2
 #define XYZ_PULLEY_TEETH 20
 
@@ -1087,16 +1087,16 @@
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define PROBING_MARGIN 10
+#define PROBING_MARGIN 20
 
 // X and Y axis travel speed (mm/min) between probes
-#define XY_PROBE_SPEED (66*60)
+#define XY_PROBE_SPEED (60*60)
 
 // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
-#define Z_PROBE_SPEED_FAST (HOMING_FEEDRATE_Z / 4)
+#define Z_PROBE_SPEED_FAST (HOMING_FEEDRATE_Z / 2)
 
 // Feedrate (mm/min) for the "accurate" probe of each point
-#define Z_PROBE_SPEED_SLOW (Z_PROBE_SPEED_FAST / 8)
+#define Z_PROBE_SPEED_SLOW (Z_PROBE_SPEED_FAST / 2)
 
 /**
  * Multiple Probing
@@ -1129,7 +1129,7 @@
 #define Z_CLEARANCE_MULTI_PROBE     2 // Z Clearance between multiple probes
 #define Z_AFTER_PROBING           50 // Z position after probing is done
 
-#define Z_PROBE_LOW_POINT          -2 // Farthest distance below the trigger-point to go before stopping
+#define Z_PROBE_LOW_POINT          -3 // Farthest distance below the trigger-point to go before stopping
 
 // For M851 give a range for adjusting the Z probe offset
 #define Z_PROBE_OFFSET_RANGE_MIN -50
@@ -1346,7 +1346,7 @@
  * Turn on with the command 'M111 S32'.
  * NOTE: Requires a lot of PROGMEM!
  */
-//#define DEBUG_LEVELING_FEATURE
+#define DEBUG_LEVELING_FEATURE
 
 #if ANY(MESH_BED_LEVELING, AUTO_BED_LEVELING_BILINEAR, AUTO_BED_LEVELING_UBL)
   // Gradually reduce leveling correction until a set height is reached,
@@ -1379,7 +1379,7 @@
 
   // Set the number of grid points per dimension.
   // Works best with 5 or more points in each dimension.
-  #define GRID_MAX_POINTS_X 5
+  #define GRID_MAX_POINTS_X 7
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   // Probe along the Y axis, advancing X after each column
@@ -1428,7 +1428,7 @@
   //===========================================================================
 
   #define MESH_INSET 20          // Set Mesh bounds as an inset region of the bed
-  #define GRID_MAX_POINTS_X 4    // Don't use more than 7 points per axis, implementation limited.
+  #define GRID_MAX_POINTS_X 6    // Don't use more than 7 points per axis, implementation limited.
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   //#define MESH_G28_REST_ORIGIN // After homing all axes ('G28' or 'G28 XYZ') rest Z at Z_MIN_POS
@@ -1491,7 +1491,7 @@
 #endif
 
 // Delta only homes to Z
-#define HOMING_FEEDRATE_Z  (200*60)
+#define HOMING_FEEDRATE_Z  (60*60)
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
